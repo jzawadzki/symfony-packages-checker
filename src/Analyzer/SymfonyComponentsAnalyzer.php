@@ -50,7 +50,7 @@ class SymfonyComponentsAnalyzer
             // find classes used by that file
             $classesUsedInFile = $this->dependenciesAnalyzer->getDependenciesFromPHPFile($file);
 
-            // for every that class
+            // for every such class
             foreach ($classesUsedInFile as $className) {
                 if ($this->isSymfonyClass($className)) {
                     // get symfony component from its name
@@ -58,9 +58,7 @@ class SymfonyComponentsAnalyzer
                     // add as key to remove duplicates automatically
                     $components[strtolower($component)] = 1;
                 } elseif($this->isDoctrineORMClass($className)) {
-
                     $components['orm-pack']=1;
-
                 } elseif($this->isTwigFile($className)) {
                     $components['templates']=1;
                 }
